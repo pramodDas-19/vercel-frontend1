@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Building2, Shield, Settings, Wrench } from "lucide-react";
+import { API_BASE_URL } from '@/config/environment';
 
 type UserRole = "superadmin" | "manager" | "technician";
 
@@ -50,7 +51,7 @@ const Login = () => {
 
     try {
       // Make direct API call first to get user data
-      const response = await fetch("http://localhost:5000/api/auth/login",{
+      const response = await fetch(`${API_BASE_URL}/auth/login`,{
         method: "POST",
         headers: {
           "Content-Type": "application/json",
