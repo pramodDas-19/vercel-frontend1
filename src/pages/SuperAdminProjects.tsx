@@ -13,6 +13,7 @@ import { Textarea } from "@/components/ui/textarea";
 import {
   ClipboardList, Search, Plus, Eye, Edit, MapPin, Calendar, Upload
 } from "lucide-react";
+import { API_BASE_URL, FILE_BASE_URL } from '@/config/environment';
 
 const SuperAdminProjects = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -43,13 +44,13 @@ const SuperAdminProjects = () => {
       const headers = { Authorization: `Bearer ${token}` };
       try {
         // Fetch user profile
-        const profileResponse = await axios.get("http://localhost:5000/api/profile", { headers });
+        const profileResponse = await axios.get(`${API_BASE_URL}/profile`, { headers });
         if (profileResponse.data.status === "success") {
           setUserProfile(profileResponse.data.data);
         }
 
         // Fetch projects
-        const projectsResponse = await axios.get("http://localhost:5000/api/superadmin/projects", { headers });
+        const projectsResponse = await axios.get(`${API_BASE_URL}/superadmin/projects`, { headers });
         if (projectsResponse.data.status === "success") {
           const data = projectsResponse.data.data;
           setProjects(Array.isArray(data.projects) ? data.projects : []);
@@ -57,7 +58,7 @@ const SuperAdminProjects = () => {
           setProjects([]);
         }
         // Fetch managers
-        const managersResponse = await axios.get("http://localhost:5000/api/superadmin/managers", { headers });
+        const managersResponse = await axios.get(`${API_BASE_URL}/superadmin/managers`, { headers });
         if (managersResponse.data.status === "success") {
           const managersData = managersResponse.data.data.map((manager: any) => ({
             id: manager._id,
@@ -98,7 +99,7 @@ const SuperAdminProjects = () => {
     });
     const token = localStorage.getItem("token");
     try {
-      const res = await axios.post("http://localhost:5000/api/superadmin/projects", formData, {
+      const res = await axios.post(`${API_BASE_URL}/superadmin/projects`, formData, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (res.data.status === "success") {
@@ -175,7 +176,7 @@ const SuperAdminProjects = () => {
         userRole="super-admin" 
         userName={userProfile?.name || "System Administrator"} 
         userEmail={userProfile?.email || "admin@cosmicsolutions.com"}
-        userProfilePicture={userProfile?.profilePicture ? `http://localhost:5000/${userProfile.profilePicture}` : undefined}
+        userProfilePicture={userProfile?.profilePicture ? `${FILE_BASE_URL}/${userProfile.profilePicture}` : undefined}
       >
         <div className="p-4 lg:p-6 space-y-6 max-w-7xl mx-auto">
           <div className="text-center py-12">
@@ -192,7 +193,7 @@ const SuperAdminProjects = () => {
       userRole="super-admin" 
       userName={userProfile?.name || "System Administrator"} 
       userEmail={userProfile?.email || "admin@cosmicsolutions.com"}
-      userProfilePicture={userProfile?.profilePicture ? `http://localhost:5000/${userProfile.profilePicture}` : undefined}
+      userProfilePicture={userProfile?.profilePicture ? `${FILE_BASE_URL}/${userProfile.profilePicture}` : undefined}
     >
       <div className="p-4 lg:p-6 space-y-6 max-w-7xl mx-auto">
         <div className="flex justify-between items-center">
