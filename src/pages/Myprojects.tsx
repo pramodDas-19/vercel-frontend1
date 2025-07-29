@@ -56,6 +56,7 @@ import {
 } from "lucide-react";
 import toast from 'react-hot-toast';
 import { useSocket } from "@/contexts/SocketContext";
+import { API_BASE_URL } from '@/config/environment';
 
 const MyProjectsPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -80,7 +81,7 @@ const MyProjectsPage = () => {
     };
 
     // Fetch manager's assigned projects (correct port)
-    fetch("http://localhost:5000/api/manager/projects", { headers })
+    fetch(`${API_BASE_URL}/manager/projects`, { headers })
       .then((res) => res.json())
       .then((data) => {
         if (data.status === "success") {
