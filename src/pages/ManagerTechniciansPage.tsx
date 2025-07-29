@@ -55,6 +55,7 @@ import {
 import toast from 'react-hot-toast';
 import { useSocket } from "@/contexts/SocketContext";
 import { useEffect } from "react";
+import { API_BASE_URL } from '@/config/environment';
 
 const ManagerTechniciansPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -72,7 +73,7 @@ const ManagerTechniciansPage = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) return;
-    fetch("http://localhost:5000/api/manager/technicians", {
+    fetch(`${API_BASE_URL}/manager/technicians`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
