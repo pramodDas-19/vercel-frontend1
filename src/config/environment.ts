@@ -22,9 +22,9 @@ const developmentConfig: EnvironmentConfig = {
 
 // Production environment (Vercel + Render)
 const productionConfig: EnvironmentConfig = {
-  API_BASE_URL: getEnvVar('VITE_API_BASE_URL', 'https://your-render-app.onrender.com/api'),
-  SOCKET_URL: getEnvVar('VITE_SOCKET_URL', 'https://your-render-app.onrender.com'),
-  FILE_BASE_URL: getEnvVar('VITE_FILE_BASE_URL', 'https://your-render-app.onrender.com'),
+  API_BASE_URL: getEnvVar('VITE_API_BASE_URL', 'https://render-backend-1-y45c.onrender.com/api'),
+  SOCKET_URL: getEnvVar('VITE_SOCKET_URL', 'https://render-backend-1-y45c.onrender.com'),
+  FILE_BASE_URL: getEnvVar('VITE_FILE_BASE_URL', 'https://render-backend-1-y45c.onrender.com'),
   NODE_ENV: 'production'
 };
 
